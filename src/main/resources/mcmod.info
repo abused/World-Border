@@ -1,0 +1,16 @@
+[
+{
+  "modid": "WorldBorder",
+  "name": "WorldBorder",
+  "description": "Efficient, feature-rich mod for limiting the size of your worlds",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Brettflan", "RoyCurtis", "abused_master"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

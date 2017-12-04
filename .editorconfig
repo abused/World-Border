@@ -1,0 +1,19 @@
+# Editor config file for WorldBorder-Forge
+# If this config prevents you from contributing in an easy manner, ignore it
+# See http://EditorConfig.org for more information
+
+root = true
+
+[*]
+# Spacing
+indent_style = space
+indent_size  = 4
+tab_width    = 4
+
+# Formatting
+end_of_line = lf
+charset     = utf-8
+
+# Whitespace
+trim_trailing_whitespace = true
+insert_final_newline     = false
