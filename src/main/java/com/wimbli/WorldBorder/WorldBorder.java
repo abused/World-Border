@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
     modid   = WorldBorder.MODID,
     name    = WorldBorder.MODID,
     version = WorldBorder.VERSION,
+    serverSideOnly = true,
 
     acceptableRemoteVersions = "*",
     acceptableSaveVersions   = ""

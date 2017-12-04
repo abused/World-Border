@@ -1,4 +1,5 @@
-WorldBorder-Forge is an unofficial and unendorsed port of [Brett Flannigan](https://github.com/Brettflan)'s [WorldBorder](https://github.com/Brettflan/WorldBorder) Bukkit plugin to Forge 1.7.10. It is a server-only mod that allows the easy management of world sizes. Almost all the features of the Bukkit plugin are available in this version, including but not limited to:
+WorldBorder-Forge is an unofficial and unendorsed port of [Brett Flannigan](https://github.com/Brettflan)'s [WorldBorder](https://github.com/Brettflan/WorldBorder) Bukkit plugin to Forge 1.10.2. It is a server-only mod that allows the easy management of world sizes. Almost all the features of the Bukkit plugin are available in this version, including but not limited to:
+This version has been updated and being maintained by abused_master for minecraft versions 1.10.2+
 
 * Per-dimension border control by radius or by corner points
 * Round or square borders, with per-dimension overrides
@@ -10,7 +11,7 @@ WorldBorder-Forge is an unofficial and unendorsed port of [Brett Flannigan](http
 
 # Requirements
 
-* Minecraft Forge server for 1.7.10, at least [10.13.4.1448](http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.4.1448-1.7.10/forge-1.7.10-10.13.4.1448-1.7.10-installer.jar)
+* Minecraft Forge server for 1.10.2, at least [1.10.2-12.18.3.2511](files.minecraftforge.net)
 
 # Mod support
 
@@ -18,7 +19,7 @@ WorldBorder-Forge is an unofficial and unendorsed port of [Brett Flannigan](http
 
 # Installation
 
-1. Download the [latest release JAR](https://github.com/Gamealition/WorldBorder-Forge/releases) or clone this repository & build a JAR file
+1. Download the [latest release JAR](minecraft.curseforge.com/projects/worldborder-forge) or clone this repository & build a JAR file
 2. Place the JAR file in the `mods/` directory of the server
 3. Run/restart the server
 4. Open `config/WorldBorder/main.cfg` and modify configuration to desired values
