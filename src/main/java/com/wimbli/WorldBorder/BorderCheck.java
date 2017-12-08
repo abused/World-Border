@@ -68,12 +68,13 @@ public class BorderCheck
 
         // check if player has something (a pet, maybe?) riding them; only possible through odd plugins.
         // it can prevent all teleportation of the player completely, so it's very much not good and needs handling
-        if (player.riddenByEntities != null)
+        if (player.getPassengers() != null)
         {
-            for(Entity rider : player.riddenByEntities) {
-                rider.dismountRidingEntity();
+            player.removePassengers();
+            for(Entity rider : player.getPassengers()) {
+                //spam
+                //Util.chat(player, "Your passenger has been ejected.");
                 rider.setPositionAndRotation(newLoc.posX, newLoc.posY, newLoc.posZ, newLoc.pitch, newLoc.yaw);
-                Util.chat(player, "Your passenger has been ejected.");
 
                 Log.trace(
                     "%s had %s riding on them",

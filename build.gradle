@@ -26,7 +26,7 @@ buildscript
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 // Gradle project metadata
-version = "1.0.3"
+version = "1.10.2-1.0.4"
 group   = "com.wimbli.WorldBorder"
 
 minecraft
