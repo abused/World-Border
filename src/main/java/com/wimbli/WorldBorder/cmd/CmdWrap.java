@@ -44,7 +44,7 @@ public class CmdWrap extends WBCmd
         // no world specified, just wrap on/off
         else
         {
-            worldName = Worlds.getWorldName(player.worldObj);
+            worldName = Worlds.getWorldName(player.world);
             wrap = strAsBool(params.get(0));
         }
 

@@ -354,7 +354,7 @@ public class WorldTrimTask
         for (CoordXZ unload : trimChunks)
             ChunkUtil.unloadChunksIfNotNearSpawn(world, unload.x, unload.z);
 
-        world.getChunkProvider().unloadQueuedChunks();
+        world.getChunkProvider().tick();
         counter += trimChunks.size();
     }
 

@@ -80,7 +80,7 @@ public class CmdSet extends WBCmd
                     return;
                 }
             }
-            worldName = Worlds.getWorldName(player.worldObj);
+            worldName = Worlds.getWorldName(player.world);
         }
 
         int radiusX, radiusZ;
@@ -105,7 +105,7 @@ public class CmdSet extends WBCmd
                     sendErrorAndHelp(sender, "The player you specified (\"" + params.get(params.size() - 1) + "\") does not appear to be online.");
                     return;
                 }
-                worldName = Worlds.getWorldName(playerT.worldObj);
+                worldName = Worlds.getWorldName(playerT.world);
                 x = playerT.posX;
                 z = playerT.posZ;
                 radiusCount -= 2;

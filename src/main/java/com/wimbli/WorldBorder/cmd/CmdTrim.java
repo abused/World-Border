@@ -69,7 +69,7 @@ public class CmdTrim extends WBCmd
         if (worldName == null && !confirm)
         {
             if (player != null)
-                worldName = Worlds.getWorldName(player.worldObj);
+                worldName = Worlds.getWorldName(player.world);
             else
             {
                 sendErrorAndHelp(sender, "You must specify a world!");

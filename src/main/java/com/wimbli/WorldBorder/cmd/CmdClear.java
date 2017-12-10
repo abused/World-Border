@@ -51,7 +51,7 @@ public class CmdClear extends WBCmd
                 sendErrorAndHelp(sender, "You must specify a world name from console if not using \"clear all\".");
                 return;
             }
-            worldName = Worlds.getWorldName(player.worldObj);
+            worldName = Worlds.getWorldName(player.world);
         }
 
         BorderData border = Config.Border(worldName);

@@ -65,7 +65,7 @@ public class DynMapFeatures
 
     public static void registerListener()
     {
-        enabled = Loader.isModLoaded("Dynmap");
+        enabled = Loader.isModLoaded("dynmap");
 
         if (enabled)
             Gateway.register();

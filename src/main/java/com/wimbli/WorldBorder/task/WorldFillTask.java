@@ -258,7 +258,7 @@ public class WorldFillTask
         Collection<Chunk> originals = provider.getLoadedChunks();
 
         for (Chunk original : originals)
-            originalChunks.add(new CoordXZ(original.xPosition, original.zPosition));
+            originalChunks.add(new CoordXZ(original.x, original.z));
 
         this.readyToGo = true;
     }

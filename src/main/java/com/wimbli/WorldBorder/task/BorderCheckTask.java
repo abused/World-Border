@@ -44,7 +44,7 @@ public class BorderCheckTask
         if ( WorldBorder.SERVER.getTickCounter() % Config.getTimerTicks() != 0 )
             return;
 
-        for (Object o : WorldBorder.SERVER.getPlayerList().getPlayerList())
+        for (Object o : WorldBorder.SERVER.getPlayerList().getPlayers())
             BorderCheck.checkPlayer( (EntityPlayerMP) o, null, false, true );
     }
 }
