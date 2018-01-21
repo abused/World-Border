@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkProviderServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -153,7 +153,8 @@ public class WorldFillTask
         if (INSTANCE != this)
             throw new IllegalStateException("Cannot start a stopped task");
 
-        FMLCommonHandler.instance().bus().register(this);
+        //FMLCommonHandler.instance().bus().register(this);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     /** Starts this task by resuming from prior progress */
@@ -173,7 +174,8 @@ public class WorldFillTask
         if (INSTANCE != this)
             throw new IllegalStateException("Task has already been stopped");
         else
-            FMLCommonHandler.instance().bus().unregister(this);
+            MinecraftForge.EVENT_BUS.unregister(this);
+        
 
         // Unload chunks that are still loaded
         while( !storedChunks.isEmpty() )
@@ -307,9 +309,9 @@ public class WorldFillTask
             long now = Util.now();
 
             // every 5 seconds or so, give basic progress report to let user know how it's going
-            if (now > lastReport + 5000)
+            if (now > lastReport + 5000){
                 reportProgress();
-
+            }
             // if this iteration has been running for 45ms (almost 1 tick) or more, stop to take a breather
             if (now > loopStartTime + 45)
             {
@@ -334,7 +336,7 @@ public class WorldFillTask
                 }
 
             // load the target chunk and generate it if necessary
-            provider.loadChunk(x, z);
+            generateChunk(provider, x, z);
             worldData.chunkExistsNow(x, z);
 
             // There need to be enough nearby chunks loaded to make the server populate a chunk with trees, snow, etc.
@@ -343,28 +345,39 @@ public class WorldFillTask
             int popZ = isZLeg ? z : (z + (!isNeg ? -1 : 1));
             // RoyCurtis: this originally specified "false" for chunk generation; things
             // may break now that it is true
-            provider.loadChunk(popX, popZ);
+            generateChunk(provider, popX, popZ);
 
             // make sure the previous chunk in our spiral is loaded as well (might have already existed and been skipped over)
             if (!storedChunks.contains(lastChunk) && !originalChunks.contains(lastChunk))
             {
-                provider.loadChunk(lastChunk.x, lastChunk.z);
+                generateChunk(provider, lastChunk.x, lastChunk.z);
                 storedChunks.add(new CoordXZ(lastChunk.x, lastChunk.z));
             }
 
             // Store the coordinates of these latest 2 chunks we just loaded, so we can unload them after a bit...
             storedChunks.add(new CoordXZ(popX, popZ));
             storedChunks.add(new CoordXZ(x, z));
+            
+            // force populate if the chunk is still unpopulated
+            if(provider.getLoadedChunk(x, z) != null && !provider.getLoadedChunk(x, z).isPopulated())
+            	try{
+            		provider.chunkGenerator.populate(x, z);
+            	} catch(Exception e) {
+            		Log.error("Error while populating chunk!");
+            		e.printStackTrace();
+            	}
 
             // If enough stored chunks are buffered in, go ahead and unload the oldest to free up memory
-            while (storedChunks.size() > 8)
+            while (storedChunks.size() > 16)
             {
                 CoordXZ coord = storedChunks.remove(0);
 
                 if (!originalChunks.contains(coord))
                     ChunkUtil.unloadChunksIfNotNearSpawn(world, coord.x, coord.z);
             }
-
+            
+            DynMapFeatures.renderRegion(world, new CoordXZ(x, z));
+            
             // move on to next chunk
             if (!moveToNext())
                 return;
@@ -372,6 +385,17 @@ public class WorldFillTask
 
         // ready for the next iteration to run
         readyToGo = true;
+    }
+    
+    private static boolean generateChunk(ChunkProviderServer chunkProvider, int x, int z) {
+        if (chunkProvider.chunkExists(x, z)) {
+            return false;
+        } 
+        chunkProvider.saveChunks(true);
+        chunkProvider.provideChunk(x, z);
+        chunkProvider.loadChunk(x, z);
+       
+        return true;
     }
 
     // step through chunks in spiral pattern from center; returns false if we're done, otherwise returns true

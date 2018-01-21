@@ -1,8 +1,8 @@
 package com.wimbli.WorldBorder.task;
 
+import com.wimbli.WorldBorder.forge.Log;
+
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 public class ChunkUtil {
@@ -15,13 +15,12 @@ public class ChunkUtil {
             int var4 = par1 * 16 + 8 - var3.getX();
             int var5 = par2 * 16 + 8 - var3.getZ();
             short var6 = 128;
-            if(var4 < -var6 || var4 > var6 || var5 < -var6 || var5 > var6)
+            if(!(var4 < -var6 || var4 > var6 || var5 < -var6 || var5 > var6))
             {
-                world.getChunkProvider().droppedChunksSet.add(Long.valueOf(ChunkPos.asLong(par1, par2)));
+            	Log.warn("Couldn't unload chunk from location (X: " + par1 + ", Z: " + par2 + ")");
+            	return;
             }
-        } else
-        {
-            world.getChunkProvider().droppedChunksSet.add(Long.valueOf(ChunkPos.asLong(par1, par2)));
         }
+        world.getChunkProvider().queueUnload(world.getChunkFromChunkCoords(par1, par2));
     }
 }
