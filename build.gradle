@@ -26,13 +26,13 @@ buildscript
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 // Gradle project metadata
-version = "1.12.2-1.0.5"
+version = "1.12.2-1.0.7"
 group   = "com.wimbli.WorldBorder"
 
 minecraft
 {
     // Forge version
-    version = "1.12.2-14.23.1.2561"
+    version = "1.12.2-14.23.1.2555"
     runDir  = "debug"
 	
     mappings = "snapshot_20171003"
