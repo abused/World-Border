@@ -6,10 +6,8 @@ import com.wimbli.WorldBorder.forge.Util;
 import com.wimbli.WorldBorder.forge.Worlds;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -90,7 +88,8 @@ public class WorldTrimTask
         if (INSTANCE != this)
             throw new IllegalStateException("Cannot start a stopped task");
 
-        FMLCommonHandler.instance().bus().register(this);
+        //FMLCommonHandler.instance().bus().register(this);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     /** Stops this task by unregistering the tick handler and removing the instance */
@@ -99,7 +98,7 @@ public class WorldTrimTask
         if (INSTANCE != this)
             throw new IllegalStateException("Task has already been stopped");
         else
-            FMLCommonHandler.instance().bus().unregister(this);
+            MinecraftForge.EVENT_BUS.unregister(this);
 
         regionChunks.clear();
         trimChunks.clear();
