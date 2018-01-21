@@ -15,14 +15,14 @@ import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraft.server.management.UserListOpsEntry;
 import net.minecraft.util.math.BlockPos;
 
-import javax.annotation.Nonnull;
+//import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
 public class WBCommand implements ICommand
 {
     static final String NAME    = "wborder";
-    static final List   ALIASES = Arrays.asList(NAME, "wb", "worldborder");
+    static final List<String>   ALIASES = Arrays.asList("wb", "worldborder");
 
     // map of all sub-commands with the command name (string) for quick reference
     public Map<String, WBCmd> subCommands = new LinkedHashMap<>();
@@ -40,11 +40,10 @@ public class WBCommand implements ICommand
         List<String> valid    = new ArrayList<>( ALIASES.size() );
         List<String> conflict = new ArrayList<>( ALIASES.size() );
 
-        Map commands = server.getCommandManager().getCommands();
+        Map<String, ICommand> commands = server.getCommandManager().getCommands();
 
-        for (Object o : ALIASES)
+        for (String name : ALIASES)
         {
-            String name  = (String) o;
             Object value = commands.get(name);
 
             if (value == null)
@@ -213,7 +212,7 @@ public class WBCommand implements ICommand
     }
 
     @Override
-    public List getAliases()
+    public List<String> getAliases()
     {
         return ALIASES;
     }
