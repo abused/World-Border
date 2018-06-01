@@ -10,15 +10,15 @@ WorldBorder-Forge is an unofficial and unendorsed port of [Brett Flannigan](http
 
 # Requirements
 
-* Minecraft Forge server for 1.10.2, at least [1.10.2-12.18.3.2511](files.minecraftforge.net)
+* Minecraft Forge server for 1.10.2, at least [1.10.2-12.18.3.2511](https://files.minecraftforge.net/)
 
 # Mod support
 
-* Integrates optionally with [Dynmap-Forge](http://minecraft.curseforge.com/mc-mods/59433-dynmapforge) for the automatic display of borders
+* Integrates optionally with [Dynmap-Forge](https://minecraft.curseforge.com/projects/dynmapforge) for the automatic display of borders
 
 # Installation
 
-1. Download the [latest release JAR](minecraft.curseforge.com/projects/worldborder-forge) or clone this repository & build a JAR file
+1. Download the [latest release JAR](https://minecraft.curseforge.com/projects/worldborder-forge) or clone this repository & build a JAR file
 2. Place the JAR file in the `mods/` directory of the server
 3. Run/restart the server
 4. Open `config/WorldBorder/main.cfg` and modify configuration to desired values
