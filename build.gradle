@@ -18,7 +18,7 @@ buildscript
 
     dependencies
     {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
@@ -26,16 +26,16 @@ buildscript
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 // Gradle project metadata
-version = "1.10.2-1.0.4"
+version = "1.12.2-1.0.6"
 group   = "com.wimbli.WorldBorder"
 
 minecraft
 {
     // Forge version
-    version = "1.10.2-12.18.3.2511"
-    runDir  = "debug"
+    version = "1.12.2-14.23.5.2768"
+    runDir = "debug"
 	
-	mappings = "snapshot_20161111"
+	mappings = "snapshot_20171003"
 }
 
 // Sets the output directory of the mod's jar file
@@ -66,7 +66,6 @@ repositories
 
 dependencies
 {
-    //compile     'org.dynmap:DynmapCoreAPI:1.9.4'
     testCompile 'junit:junit:4.11'
 }
 
@@ -89,11 +88,5 @@ processResources
     from(sourceSets.main.resources.srcDirs)
     {
         exclude 'mcmod.info'
-    }
-}
-
-jar {
-    manifest {
-        attributes 'FMLAT': 'worldborder_at.cfg'
     }
 }

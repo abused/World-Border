@@ -9,6 +9,7 @@ public class ChunkUtil {
 
     public static void unloadChunksIfNotNearSpawn(WorldServer world, int par1, int par2)
     {
+        //Attempt to unload the chunk if the player can't respawn here, otherwise always unload
         if(world.provider.canRespawnHere())
         {
             BlockPos var3 = world.getSpawnPoint();
@@ -17,11 +18,11 @@ public class ChunkUtil {
             short var6 = 128;
             if(var4 < -var6 || var4 > var6 || var5 < -var6 || var5 > var6)
             {
-                world.getChunkProvider().droppedChunksSet.add(Long.valueOf(ChunkPos.asLong(par1, par2)));
+                world.getChunkProvider().queueUnload(world.getChunkFromChunkCoords(par1, par2));
             }
         } else
         {
-            world.getChunkProvider().droppedChunksSet.add(Long.valueOf(ChunkPos.asLong(par1, par2)));
+            world.getChunkProvider().queueUnload(world.getChunkFromChunkCoords(par1, par2));
         }
     }
 }

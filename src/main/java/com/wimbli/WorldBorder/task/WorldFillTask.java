@@ -258,7 +258,7 @@ public class WorldFillTask
         Collection<Chunk> originals = provider.getLoadedChunks();
 
         for (Chunk original : originals)
-            originalChunks.add(new CoordXZ(original.xPosition, original.zPosition));
+            originalChunks.add(new CoordXZ(original.x, original.z));
 
         this.readyToGo = true;
     }
@@ -266,6 +266,10 @@ public class WorldFillTask
     @SubscribeEvent
     public void onServerTick(TickEvent.ServerTickEvent event)
     {
+        if(!provider.canSave()) {
+            provider.saveChunks(true);
+        }
+
         // Only run at start of tick
         if (event.phase == TickEvent.Phase.END)
             return;
@@ -334,7 +338,7 @@ public class WorldFillTask
                 }
 
             // load the target chunk and generate it if necessary
-            provider.loadChunk(x, z);
+            provider.provideChunk(x, z);
             worldData.chunkExistsNow(x, z);
 
             // There need to be enough nearby chunks loaded to make the server populate a chunk with trees, snow, etc.
@@ -343,12 +347,12 @@ public class WorldFillTask
             int popZ = isZLeg ? z : (z + (!isNeg ? -1 : 1));
             // RoyCurtis: this originally specified "false" for chunk generation; things
             // may break now that it is true
-            provider.loadChunk(popX, popZ);
+            provider.provideChunk(popX, popZ);
 
             // make sure the previous chunk in our spiral is loaded as well (might have already existed and been skipped over)
             if (!storedChunks.contains(lastChunk) && !originalChunks.contains(lastChunk))
             {
-                provider.loadChunk(lastChunk.x, lastChunk.z);
+                provider.provideChunk(lastChunk.x, lastChunk.z);
                 storedChunks.add(new CoordXZ(lastChunk.x, lastChunk.z));
             }
 
@@ -371,6 +375,7 @@ public class WorldFillTask
         }
 
         // ready for the next iteration to run
+        DynMapFeatures.renderRegion(world, new CoordXZ(x, z));
         readyToGo = true;
     }
 

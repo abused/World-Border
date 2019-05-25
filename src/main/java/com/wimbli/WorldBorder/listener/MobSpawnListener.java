@@ -33,7 +33,7 @@ public class MobSpawnListener
 
     private boolean isInsideBorder(LivingSpawnEvent event)
     {
-        World      world  = event.getEntity().worldObj;
+        World      world  = event.getEntity().world;
         BorderData border = Config.Border( Worlds.getWorldName(world) );
 
         return border == null

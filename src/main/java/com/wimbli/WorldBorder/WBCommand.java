@@ -15,7 +15,6 @@ import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraft.server.management.UserListOpsEntry;
 import net.minecraft.util.math.BlockPos;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -201,19 +200,19 @@ public class WBCommand implements ICommand
     }
 
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return NAME;
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender)
+    public String getUsage(ICommandSender sender)
     {
         return "/wborder help [n]";
     }
 
     @Override
-    public List getCommandAliases()
+    public List getAliases()
     {
         return ALIASES;
     }
@@ -242,16 +241,16 @@ public class WBCommand implements ICommand
     }
 
     @Override
-    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
         if (args.length <= 1)
             return CommandBase.getListOfStringsMatchingLastWord(args, getCommandNames());
 
-        String[] players = WorldBorder.SERVER.getAllUsernames();
+        String[] players = WorldBorder.SERVER.getOnlinePlayerNames();
         return CommandBase.getListOfStringsMatchingLastWord(args, players);
     }
 
     @Override
     public int compareTo(ICommand o) {
-        return o.getCommandName().compareTo( getCommandName() );
+        return o.getName().compareTo( getName() );
     }
 }

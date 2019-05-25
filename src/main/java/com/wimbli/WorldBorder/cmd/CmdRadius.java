@@ -29,7 +29,7 @@ public class CmdRadius extends WBCmd
     public void execute(ICommandSender sender, EntityPlayerMP player, List<String> params, String worldName)
     {
         if (worldName == null)
-            worldName = Worlds.getWorldName(player.worldObj);
+            worldName = Worlds.getWorldName(player.world);
 
         BorderData border = Config.Border(worldName);
         if (border == null)

@@ -36,7 +36,7 @@ public class Util
         else
         {
             translated = String.format(translated, parts);
-            sender.addChatMessage( new TextComponentString(translated) );
+            sender.sendMessage( new TextComponentString(translated) );
         }
     }
 

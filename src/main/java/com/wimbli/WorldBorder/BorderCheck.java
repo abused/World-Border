@@ -56,13 +56,13 @@ public class BorderCheck
                 {    // boats currently glitch on client when teleported, so crappy workaround is to remove it and spawn a new one
                     ride.setDead();
                     ride = new EntityBoat(world, rideLoc.posX, rideLoc.posY, rideLoc.posZ);
-                    world.spawnEntityInWorld(ride);
+                    world.spawnEntity(ride);
                 }
                 else
                     ride.setPositionAndRotation(rideLoc.posX, rideLoc.posY, rideLoc.posZ, rideLoc.pitch, rideLoc.yaw);
 
                 if ( Config.getRemount() )
-                    player.addPassenger(ride);
+                    player.startRiding(ride);
             }
         }
 
@@ -134,7 +134,7 @@ public class BorderCheck
                 return null;
             }
 
-            newLoc = new Location( (WorldServer) player.worldObj );
+            newLoc = new Location( (WorldServer) player.world );
         }
 
         Log.trace(

@@ -26,7 +26,7 @@ public class Location
      */
     public Location(EnderTeleportEvent event, EntityPlayerMP player)
     {
-        world = (WorldServer) player.worldObj;
+        world = (WorldServer) player.world;
         posX  = event.getTargetX();
         posY  = event.getTargetY();
         posZ  = event.getTargetZ();
@@ -37,7 +37,7 @@ public class Location
     /** Creates a Location based on the latest (target) position of a player */
     public Location(EntityPlayer player)
     {
-        world = (WorldServer) player.worldObj;
+        world = (WorldServer) player.world;
         posX  = player.posX;
         posY  = player.posY;
         posZ  = player.posZ;

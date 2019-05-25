@@ -32,7 +32,7 @@ public class WorldBorder
     /** Frozen at 1.0.0 to prevent misleading world save error */
     public static final String VERSION = "1.0.0";
 	//will change in 1.11.2+
-    public static final String MODID   = "WorldBorder";
+    public static final String MODID   = "worldborder";
 
     /** Singleton instance of WorldBorder, created by Forge */
     public static WorldBorder     INSTANCE = null;

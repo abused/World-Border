@@ -45,7 +45,7 @@ public class CmdWshape extends WBCmd
         // no world specified, just shape
         else
         {
-            worldName = Worlds.getWorldName(player.worldObj);
+            worldName = Worlds.getWorldName(player.world);
             shapeName = params.get(0).toLowerCase();
         }
 
